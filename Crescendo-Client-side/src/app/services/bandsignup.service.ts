@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod'
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,7 @@ export class BandsignupService {
 
     console.log(payload);
 
-    this.httpClient.post('http://ec2-18-191-22-171.us-east-2.compute.amazonaws.com:8081/Crescendo/bands/signup', payload, {
+    this.httpClient.post(environment.url + '/bands/signup', payload, {
       observe: 'response'
       })
       .subscribe(response => {

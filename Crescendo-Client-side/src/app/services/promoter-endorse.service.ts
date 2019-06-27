@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment.prod'
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +32,7 @@ export class PromoterEndorseService {
 
       console.log(payload);
 
-      this.httpClient.post('http://ec2-18-191-22-171.us-east-2.compute.amazonaws.com:8081/Crescendo/gigs/create', payload, {
+      this.httpClient.post(environment.url + '/gigs/create', payload, {
         observe: 'response'
       })
       .subscribe(response => {

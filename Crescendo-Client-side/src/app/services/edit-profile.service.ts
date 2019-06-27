@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Url } from 'url';
+import { environment } from 'src/environments/environment.prod'
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +30,7 @@ export class EditProfileService {
 
   console.log(payload);
 
-    this.httpClient.put('http://ec2-18-191-22-171.us-east-2.compute.amazonaws.com:8081/Crescendo/bands/update', payload, {
+    this.httpClient.put(environment.url + '/bands/update', payload, {
     observe: 'response'}).subscribe(response => {
       this.editStatusSubject.next(200);
     }, err => {

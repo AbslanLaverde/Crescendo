@@ -3,6 +3,8 @@ import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Gig } from '../classes/gig';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod'
+
 
 @Injectable({
   providedIn: 'root'

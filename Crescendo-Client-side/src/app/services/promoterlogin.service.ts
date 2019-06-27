@@ -5,6 +5,8 @@ import { Promoter } from '../models/promoter';
 import { map } from 'rxjs/operators';
 import { Gig } from '../classes/gig';
 import { Band } from '../models/band';
+import { environment } from 'src/environments/environment.prod'
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +32,7 @@ export class PromoterloginService {
       password: password
     };
 
-    this.httpClient.post('http://ec2-18-191-22-171.us-east-2.compute.amazonaws.com:8081/Crescendo/promoters/login', payload, {
+    this.httpClient.post(environment.url + '/promoters/login', payload, {
       observe: 'response'
       }).pipe(map(response => response.body as Promoter))
       .subscribe(response => {
@@ -46,7 +48,7 @@ export class PromoterloginService {
   }
 
   promoterGigs() {
-    this.httpClient.get(`http://ec2-18-191-22-171.us-east-2.compute.amazonaws.com:8081/Crescendo/promoters/gigs/${this.promoter.id}`, {
+    this.httpClient.get(environment.url + `/promoters/gigs/${this.promoter.id}`, {
       observe: 'response'
     }).pipe(map(response => response.body as Array<Gig>))
     .subscribe(response => {
@@ -61,7 +63,7 @@ export class PromoterloginService {
   }
 
   pullAllBands() {
-    this.httpClient.get('http://ec2-18-191-22-171.us-east-2.compute.amazonaws.com:8081/Crescendo/promoters/allbands', {
+    this.httpClient.get(environment.url + '/promoters/allbands', {
       observe: 'response'
     }).pipe(map(response => response.body as Array<Band>))
     .subscribe(response => {
